@@ -7,10 +7,12 @@ spring:
     config:
       server:
         git:
-          uri:
+          uri: https://github.com/1293700480/springcloud-config.git
           search-paths:
             - springcloud-config
-      lable: master
+          username: 1293700480
+          password: qq1293700480
+      lable: main
 eureka:
   client:
     register-with-eureka: true #表示向注册中心注册自己 默认为true
@@ -18,3 +20,15 @@ eureka:
     service-url:
       #defaultZone: http://localhost:7001/eureka/ # 入驻地址
       defaultZone: http://eureka7001.com:7001/eureka/, http://eureka7002.com:7002/eureka/ #集群版
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+management:
+  endpoints:
+    web:
+      exposure:
+        include: 'bus-refresh'
+        # curl -X POST "http://localhost:3344/actuator/bus-refresh/{destination}"
+        # curl -X POST "http://localhost:3344/actuator/bus-refresh/config-client:3355"
